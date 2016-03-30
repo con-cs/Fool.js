@@ -206,6 +206,121 @@ function fool() {
 						$(htmlElements).each(function(index, element) {
 							eraseElement(index, element, speed);
 						});
+					},
+
+					//add some flowerpower
+					flower: function(){
+						function flowers() {
+						    var flowerStyle= "<style type='text/css'>" +
+						        ".drops{" +
+						        "   position: absolute;z-index: 999;width: 125px;height: 125px;display: none;" +
+						        "}" +
+						        "#rect.raindrop{" +
+						        "	background: lightblue;width: 50%;height: 50%;position: absolute; display: block;overflow: hidden" +
+						        "	border-left: 0px solid transparent;" +
+						        "	border-radius: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;" +
+						        "	border-top-right-radius: 0;-webkit-border-top-right-radius: 0;-moz-border-radius-topright: 0;" +
+						        "	transform: rotate(-45deg);-webkit-transform: rotate(-45deg);-moz-transform: rotate(-45deg);-o-transform: rotate(-45deg);-ms-transform: rotate(-45deg);" +
+						        "	transition: all 1s;-webkit-transition: all 1s;-moz-transition: all 1s;-o-transition: all 1s;-ms-transition: all 1s;" +
+						        "}" +
+						        ".raindrop.sm {" +
+						        "	width: 50%;height: 50%;position: absolute;	border-radius: 75px;" +
+						        "	-webkit-border-radius: 75px;-moz-border-radius: 75px;" +
+						        "	-top-right-radius: 0;-webkit-border-top-right-radius: 0;-moz-border-radius-topright: 0;" +
+						        "}" +
+						        ".raindrop.lg {" +
+						        "	width: 100px;height: 100px;position: absolute;" +
+						        "	border-radius: 125px;-webkit-border-radius: 125px;-moz-border-radius: 125px;" +
+						        "	border-top-right-radius: 0;-webkit-border-top-right-radius: 0;-moz-border-radius-topright: 0;" +
+						        "}" +
+						        "#rect.raindrop.green  { background : lightgreen; }" +
+						        "#rect.raindrop.yellow { background : yellow;     }" +
+						        "#rect.raindrop.orange { background : orange;     }" +
+						        "#rect.raindrop.teal   { background : teal;       }" +
+						        "#rect.raindrop.pink   { background : pink;       }" +
+						        "#rect.raindrop:nth-child(1) /* yellow */{" +
+						        "	transform: rotate(-76deg) skewX(-12deg) skewY(-4deg);-webkit-transform: rotate(-76deg) skewX(-12deg) skewY(-4deg);-moz-transform: rotate(-76deg) skewX(-12deg) skewY(-4deg);-o-transform: rotate(-76deg) skewX(-12deg) skewY(-4deg);-ms-transform: rotate(-76deg) skewX(-12deg) skewY(-4deg);top: 149px;left: 169px;" +
+						        "}" +
+						        "#rect.raindrop:nth-child(2)/* blue */{" +
+						        "	transform: rotate(-148deg) skewX(-12deg) skewY(-4deg);-webkit-transform: rotate(-148deg) skewX(-12deg) skewY(-4deg);-moz-transform: rotate(-148deg) skewX(-12deg) skewY(-4deg);-o-transform: rotate(-148deg) skewX(-12deg) skewY(-4deg);-ms-transform: rotate(-148deg) skewX(-12deg) skewY(-4deg);top: 91px;left: 198px;" +
+						        "}" +
+						        "#rect.raindrop:nth-child(3)/* orange */{" +
+						        "	transform: rotate(-220deg) skewX(-12deg) skewY(-4deg);-webkit-transform: rotate(-220deg) skewX(-12deg) skewY(-4deg);-moz-transform: rotate(-220deg) skewX(-12deg) skewY(-4deg);-o-transform: rotate(-220deg) skewX(-12deg) skewY(-4deg);-ms-transform: rotate(-220deg) skewX(-12deg) skewY(-4deg);top: 46px;left: 151px;" +
+						        "}" +
+						        "#rect.raindrop:nth-child(4)/* pink */{" +
+						        "	transform: rotate(-292deg) skewX(-12deg) skewY(-4deg);-webkit-transform: rotate(-292deg) skewX(-12deg) skewY(-4deg);-moz-transform: rotate(-292deg) skewX(-12deg) skewY(-4deg);-o-transform: rotate(-292deg) skewX(-12deg) skewY(-4deg);-ms-transform: rotate(-292deg) skewX(-12deg) skewY(-4deg);top: 78px;left: 94px;" +
+						        "}" +
+						        "#rect.raindrop:nth-child(5)/* blue */{" +
+						        "	transform: rotate(-4deg) skewX(-12deg) skewY(-4deg);-webkit-transform: rotate(-4deg) skewX(-12deg) skewY(-4deg);-moz-transform: rotate(-4deg) skewX(-12deg) skewY(-4deg);-o-transform: rotate(-4deg) skewX(-12deg) skewY(-4deg);-ms-transform: rotate(-4deg) skewX(-12deg) skewY(-4deg);top: 142px;left: 104px;" +
+						        "}</style>";
+
+						    var flowerHtml = "" +
+						        "<div class='drops' style='toreplace'>" +
+						        "    <div id='rect' class='raindrop yellow'></div>" +
+						        "    <div id='rect' class='raindrop'></div>" +
+						        "    <div id='rect' class='raindrop orange'></div>" +
+						        "    <div id='rect' class='raindrop pink'></div>" +
+						        "    <div id='rect' class='raindrop tel'></div>" +
+						        "</div>";
+
+						    $('head').append(flowerStyle);
+						    appendFlowers(flowerHtml);
+						}
+
+						function appendFlowers(flowerHtml){
+						    $( ".drops" ).remove();
+
+						    for (var i = 0; i < 10; i++) {
+						        createFlower(flowerHtml);
+						    }
+						    moveFlowers();
+						}
+						function createFlower( flowerHtml ){
+						    var xMax = window.top.$(document).width();
+						    var yMax = window.top.$(document).height();
+						    var x = (( Math.random() * xMax ) << 0);
+						    var y = (( Math.random() * yMax ) << 0);
+						    flowerHtml = flowerHtml.replace("toreplace", "left: " + x + "px; top: " + y + "px;");    
+
+						    $('body').append(flowerHtml);
+						}
+
+						function moveFlowers(){
+						    $( ".raindrop" ).css({ width: "0%", height: "0%" });    
+						    $( ".drops" ).show();
+						    animateFlowers("50%");
+						    window.setTimeout( function(){ animateFlowers("0%"); }, 4000 );
+						}
+						function animateFlowers(size){
+						    //$( ".raindrop" ).animate({ width: size, height: size }, 500 );
+						    if (size[0] > 0) {
+						        $(".drops").addClass("ToGrow");
+						        growFlowers(size);
+						    } else {
+						        $(".drops").addClass("ToShrink");
+						        shrinkFlowers(size);
+						    }
+						}
+
+						function growFlowers(size){
+						    $(".ToGrow").first().children().animate({ width: size, height: size }, 10 )
+						    $(".ToGrow").first().removeClass("ToGrow");
+						    if ($(".ToGrow").length > 0) {
+						        window.setTimeout( function(){ growFlowers(size);}, (Math.random() * 300) >> 0);
+						    }
+						}
+
+						function shrinkFlowers(size){
+						    $(".ToShrink").first().children().animate({ width: size, height: size }, 50 )
+						    $(".ToShrink").first().removeClass("ToShrink");
+						    if ($(".ToShrink").length > 0) {
+						        window.setTimeout( function(){ shrinkFlowers(size);}, (Math.random() * 500) >> 0);
+						    } else {
+						        window.setTimeout(function(){ flowers(); }, ( (Math.random() * 5000) << 0 ) );
+						    }
+						}
+
+						flowers();
 					}
 				}
 
